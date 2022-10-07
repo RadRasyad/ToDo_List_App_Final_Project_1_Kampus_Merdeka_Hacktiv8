@@ -21,4 +21,12 @@ public class MainViewModel extends ViewModel {
         return mNoteRepository.getAllNotes();
     }
 
+    public void update(Note note) {
+        mNoteRepository.update(note);
+    }
+
+//    public void delete(Note note) {
+//        mNoteRepository.delete(note);
+//    }
+
 }

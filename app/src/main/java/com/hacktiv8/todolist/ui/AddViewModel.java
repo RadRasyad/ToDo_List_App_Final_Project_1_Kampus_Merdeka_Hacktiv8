@@ -1,4 +1,4 @@
-package com.hacktiv8.todolist;
+package com.hacktiv8.todolist.ui;
 
 import android.app.Application;
 
@@ -21,9 +21,5 @@ public class AddViewModel extends ViewModel {
     public void update(Note note) {
         mNoteRepository.update(note);
     }
-
-//    public void delete(Note note) {
-//        mNoteRepository.delete(note);
-//    }
 
 }

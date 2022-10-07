@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.hacktiv8.todolist.AddViewModel;
+import com.hacktiv8.todolist.ui.AddViewModel;
 import com.hacktiv8.todolist.ui.MainViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
