@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Task Notes</string>
+    <string name="title">Project Final 1</string>
+    <string name="desc">Pada project ini membuat CRUD</string>
 </resources>

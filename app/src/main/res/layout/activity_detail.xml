@@ -11,13 +11,13 @@
 
 
     <TextView
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:id="@+id/detail_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Project Final 1" />
+        android:text="@string/title" />
 
     <View
         android:id="@+id/garis_vw"
@@ -31,9 +31,9 @@
         android:id="@+id/detail_desc_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textColor="@color/black"
-        android:text="Pada project ini membuat CRUD"
+        android:text="@string/desc"
         />
 
 
