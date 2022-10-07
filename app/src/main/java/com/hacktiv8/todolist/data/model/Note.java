@@ -8,7 +8,7 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Note implements Parcelable {
+public class Note {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -20,6 +20,8 @@ public class Note implements Parcelable {
     @ColumnInfo(name = "description")
     private String description;
 
+    @ColumnInfo(name = "isDone")
+    private boolean isDone;
 
     public int getId() {
         return id;
@@ -45,39 +47,12 @@ public class Note implements Parcelable {
         this.description = description;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
-        dest.writeString(this.title);
-        dest.writeString(this.description);
+    public boolean getDone() {
+        return isDone;
     }
 
-    @Ignore
-    public Note() {}
-
-    public Note(String title, String description) {
-        this.title = title;
-        this.description = description;
+    public void setDone(boolean done) {
+        isDone = done;
     }
-    private Note(Parcel in) {
-        this.id = in.readInt();
-        this.title = in.readString();
-        this.description = in.readString();
-    }
-
-    public static final Parcelable.Creator<Note> CREATOR = new Parcelable.Creator<Note>() {
-        @Override
-        public Note createFromParcel(Parcel source) {
-            return new Note(source);
-        }
-        @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
-        }
-    };
 
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,9 +15,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/note_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <include layout="@layout/note_item"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/note_item"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
@@ -27,8 +26,5 @@
             android:layout_gravity="end|bottom"/>
 
     </FrameLayout>
-
-
-
 
 </LinearLayout>

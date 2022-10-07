@@ -1,29 +1,31 @@
-package com.hacktiv8.todolist;
+package com.hacktiv8.todolist.ui;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hacktiv8.todolist.R;
 import com.hacktiv8.todolist.data.model.Note;
+import com.hacktiv8.todolist.utils.NoteDiffCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private Context context;
+    private ArrayList<Note> listNotes = new ArrayList<>();
 
-    private List<Note> noteList = new ArrayList<>();
-
-    public NoteAdapter(Context context, List<Note> noteList){
-        this.context = context;
-        this.noteList = noteList;
+    void setListNotes(List<Note> listNotes) {
+        final NoteDiffCallback diffCallback = new NoteDiffCallback(this.listNotes, listNotes);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+        this.listNotes.clear();
+        this.listNotes.addAll(listNotes);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @NonNull
@@ -36,15 +38,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Note note = noteList.get(position);
+        Note note = listNotes.get(position);
         holder.noteTv.setText(note.getTitle());
-        holder.descTv.setText(note.describeContents());
+        holder.descTv.setText(note.getDescription());
 
     }
 
     @Override
     public int getItemCount() {
-        return noteList.size();
+        return listNotes.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

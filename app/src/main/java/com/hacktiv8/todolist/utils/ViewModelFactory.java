@@ -6,8 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.hacktiv8.todolist.AddUpdateViewModel;
-import com.hacktiv8.todolist.MainViewModel;
+import com.hacktiv8.todolist.AddViewModel;
+import com.hacktiv8.todolist.ui.MainViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private static volatile ViewModelFactory INSTANCE;
@@ -31,8 +31,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(MainViewModel.class)) {
             return (T) new MainViewModel(mApplication);
-        } else if (modelClass.isAssignableFrom(AddUpdateViewModel.class)) {
-            return (T) new AddUpdateViewModel(mApplication);
+        } else if (modelClass.isAssignableFrom(AddViewModel.class)) {
+            return (T) new AddViewModel(mApplication);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }

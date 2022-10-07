@@ -1,4 +1,4 @@
-package com.hacktiv8.todolist;
+package com.hacktiv8.todolist.ui;
 
 import android.app.Application;
 
@@ -20,4 +20,5 @@ public class MainViewModel extends ViewModel {
     LiveData<List<Note>> getAllNotes() {
         return mNoteRepository.getAllNotes();
     }
+
 }

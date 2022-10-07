@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel;
 import com.hacktiv8.todolist.data.NoteRepository;
 import com.hacktiv8.todolist.data.model.Note;
 
-public class AddUpdateViewModel extends ViewModel {
+public class AddViewModel extends ViewModel {
     private final NoteRepository mNoteRepository;
 
-    public AddUpdateViewModel(Application application) {
+    public AddViewModel(Application application) {
         mNoteRepository = new NoteRepository(application);
     }
 
