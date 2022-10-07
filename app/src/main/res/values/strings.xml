@@ -2,4 +2,7 @@
     <string name="app_name">Task Notes</string>
     <string name="title">Project Final 1</string>
     <string name="desc">Pada project ini membuat CRUD</string>
+    <string name="noteTitle">Judul</string>
+    <string name="noteDescription">Deskripsi</string>
+    <string name="add">Tambah</string>
 </resources>
