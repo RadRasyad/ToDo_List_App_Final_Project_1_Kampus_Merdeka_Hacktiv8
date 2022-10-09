@@ -1,7 +1,8 @@
 package com.hacktiv8.todolist.ui;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -48,9 +49,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         final NoteItemBinding binding;
-        private TextView noteTv;
-        private TextView descTv;
-        private CheckBox ketCb;
 
         public ViewHolder(NoteItemBinding binding) {
             super(binding.getRoot());
@@ -61,8 +59,22 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             binding.titleTv.setText(note.getTitle());
             binding.deskTv.setText(note.getDescription());
 
+            Log.d("Adapter", String.valueOf(note.getId()));
+
+            if (note.getDone()==true) {
+                binding.ketCbox.setChecked(true);
+            } else {
+                binding.ketCbox.setChecked(false);
+            }
+
             binding.ketCbox.setOnClickListener(v -> {
                 editItemListener.onEditItemListener(getAdapterPosition());
+            });
+
+            itemView.setOnClickListener(view -> {
+                Intent intent = new Intent(itemView.getContext(), DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_DATA, note.getId());
+                itemView.getContext().startActivity(intent);
             });
         }
     }

@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.hacktiv8.todolist.R;
 import com.hacktiv8.todolist.data.model.Note;
 import com.hacktiv8.todolist.databinding.ActivityMainBinding;
 import com.hacktiv8.todolist.utils.ViewModelFactory;

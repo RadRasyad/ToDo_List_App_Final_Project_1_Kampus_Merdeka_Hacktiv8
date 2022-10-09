@@ -8,17 +8,15 @@ import androidx.lifecycle.ViewModel;
 import com.hacktiv8.todolist.data.NoteRepository;
 import com.hacktiv8.todolist.data.model.Note;
 
-import java.util.List;
-
-public class MainViewModel extends ViewModel {
+public class DetailViewModel extends ViewModel {
     private final NoteRepository mNoteRepository;
 
-    public MainViewModel(Application application) {
+    public DetailViewModel(Application application) {
         mNoteRepository = new NoteRepository(application);
     }
 
-    LiveData<List<Note>> getAllNotes() {
-        return mNoteRepository.getAllNotes();
+    public LiveData<Note> getNoteById(int id) {
+        return mNoteRepository.getNoteById(id);
     }
 
     public void update(Note note) {

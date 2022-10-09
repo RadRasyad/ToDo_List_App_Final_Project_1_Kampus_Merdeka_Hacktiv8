@@ -26,13 +26,11 @@ public class NoteRepository {
         return mNotesDao.getAllNotes();
     }
 
+    public LiveData<Note> getNoteById(int id) { return mNotesDao.getNoteById(id); }
+
     public void insert(final Note note) {
         executorService.execute(() -> mNotesDao.insert(note));
     }
-
-//    public void delete(final Note note){
-//        executorService.execute(() -> mNotesDao.delete(note));
-//    }
 
     public void update(final Note note) {
         executorService.execute(() -> mNotesDao.update(note));

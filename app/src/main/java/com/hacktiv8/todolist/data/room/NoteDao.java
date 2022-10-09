@@ -21,13 +21,10 @@ public interface NoteDao {
     @Update()
     void update(Note note);
 
-//    @Delete()
-//    void delete(Note note);
-
-    @Query("SELECT * from note ORDER BY id ASC")
+    @Query("SELECT * from note ORDER BY isDone ASC")
     LiveData<List<Note>> getAllNotes();
 
     @Query("SELECT * from note WHERE id = :id")
-    LiveData<List<Note>> getNoteById(String id);
+    LiveData<Note> getNoteById(int id);
 
 }

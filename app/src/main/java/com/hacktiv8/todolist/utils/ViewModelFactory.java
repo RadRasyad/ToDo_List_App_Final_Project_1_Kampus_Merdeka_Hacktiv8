@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.hacktiv8.todolist.ui.AddViewModel;
+import com.hacktiv8.todolist.ui.DetailViewModel;
 import com.hacktiv8.todolist.ui.MainViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
@@ -33,6 +34,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new MainViewModel(mApplication);
         } else if (modelClass.isAssignableFrom(AddViewModel.class)) {
             return (T) new AddViewModel(mApplication);
+        } else if (modelClass.isAssignableFrom(DetailViewModel.class)) {
+            return (T) new DetailViewModel(mApplication);
         }
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
