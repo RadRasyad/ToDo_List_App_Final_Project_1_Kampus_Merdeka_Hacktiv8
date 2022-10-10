@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.EditI
     public void onEditItemListener(int position) {
         Note note = listNote.get(position);
         boolean isDone = note.getDone();
-        Log.d("Main Activity", String.valueOf(isDone));
         if (isDone == true) {
             isDone = false;
         } else {

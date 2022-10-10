@@ -1,6 +1,7 @@
 package com.hacktiv8.todolist.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -44,6 +45,20 @@ public class DetailActivity extends AppCompatActivity {
                     binding.inputTitle.setText(note.getTitle());
                     binding.inputDescription.setText(note.getDescription());
                     isDone = note.getDone();
+
+                    if (isDone==true) {
+                        binding.ketCbox.setChecked(true);
+                    } else {
+                        binding.ketCbox.setChecked(false);
+                    }
+                }
+            });
+
+            binding.ketCbox.setOnClickListener(v -> {
+                if (isDone == true) {
+                    isDone = false;
+                } else {
+                    isDone = true;
                 }
             });
 
@@ -110,7 +125,7 @@ public class DetailActivity extends AppCompatActivity {
     public void setSelected(int selectedMode) {
         switch (selectedMode) {
             case android.R.id.home:
-                this.finish();
+                showCloseAlertDialog();
                 break;
             case R.id.actionDelete:
                 //isi dengan action delete
@@ -118,4 +133,24 @@ public class DetailActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    private void showCloseAlertDialog() {
+        String dialogTitle, dialogMessage;
+
+        dialogTitle = getString(R.string.cancel);
+        dialogMessage = getString(R.string.message_cancel);
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(dialogTitle);
+        alertDialogBuilder
+                .setMessage(dialogMessage)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
+                    finish();
+                })
+                .setNegativeButton(getString(R.string.no), (dialog, id) -> dialog.cancel());
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }
