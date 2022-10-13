@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.room.Room;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +13,6 @@ import android.widget.Toast;
 
 import com.hacktiv8.todolist.R;
 import com.hacktiv8.todolist.data.model.Note;
-import com.hacktiv8.todolist.data.room.NoteDatabase;
 import com.hacktiv8.todolist.databinding.ActivityDetailBinding;
 import com.hacktiv8.todolist.utils.ViewModelFactory;
 
@@ -50,20 +47,12 @@ public class DetailActivity extends AppCompatActivity {
                     binding.inputDescription.setText(note.getDescription());
                     isDone = note.getDone();
 
-                    if (isDone==true) {
-                        binding.ketCbox.setChecked(true);
-                    } else {
-                        binding.ketCbox.setChecked(false);
-                    }
+                    binding.ketCbox.setChecked(isDone == true);
                 }
             });
 
             binding.ketCbox.setOnClickListener(v -> {
-                if (isDone == true) {
-                    isDone = false;
-                } else {
-                    isDone = true;
-                }
+                isDone = isDone != true;
             });
 
             binding.btnEdit.setOnClickListener(view -> {

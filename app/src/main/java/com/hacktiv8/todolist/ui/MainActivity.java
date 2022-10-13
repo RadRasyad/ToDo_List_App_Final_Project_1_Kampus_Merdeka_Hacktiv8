@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.hacktiv8.todolist.data.model.Note;
 import com.hacktiv8.todolist.databinding.ActivityMainBinding;
@@ -64,11 +63,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.EditI
     public void onEditItemListener(int position) {
         Note note = listNote.get(position);
         boolean isDone = note.getDone();
-        if (isDone == true) {
-            isDone = false;
-        } else {
-            isDone = true;
-        }
+        isDone = isDone != true;
         note.setDone(isDone);
         mainViewModel.update(note);
     }
