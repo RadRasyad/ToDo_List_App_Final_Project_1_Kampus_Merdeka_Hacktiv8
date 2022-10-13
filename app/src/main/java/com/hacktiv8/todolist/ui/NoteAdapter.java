@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +59,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             binding.titleTv.setText(note.getTitle());
             binding.deskTv.setText(note.getDescription());
 
-            binding.ketCbox.setChecked(note.getDone() == true);
+            Log.d("Adapter", String.valueOf(note.getId()));
+
+            if (note.getDone()==true) {
+                binding.ketCbox.setChecked(true);
+            } else {
+                binding.ketCbox.setChecked(false);
+            }
 
             binding.ketCbox.setOnClickListener(v -> {
                 editItemListener.onEditItemListener(getAdapterPosition());
@@ -71,7 +79,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         }
     }
 
-    private final EditItemListener editItemListener;
+    private EditItemListener editItemListener;
 
     public interface EditItemListener {
         void onEditItemListener(int position);
