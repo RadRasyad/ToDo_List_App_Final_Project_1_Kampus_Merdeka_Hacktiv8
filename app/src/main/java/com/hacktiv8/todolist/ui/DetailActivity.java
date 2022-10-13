@@ -28,7 +28,6 @@ public class DetailActivity extends AppCompatActivity {
     private Note note;
     private boolean isDone;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
                 }
             });
 
-            binding.btnAdd.setOnClickListener(view -> {
+            binding.btnEdit.setOnClickListener(view -> {
                 String title = binding.inputTitle.getText().toString().trim();
                 String description = binding.inputDescription.getText().toString().trim();
 
@@ -129,29 +128,21 @@ public class DetailActivity extends AppCompatActivity {
     public void setSelected(int selectedMode) {
         switch (selectedMode) {
             case android.R.id.home:
-                showCloseAlertDialog();
+                showAlertDialog(getString(R.string.cancel), getString(R.string.message_cancel), false);
                 break;
             case R.id.actionDelete:
-                //isi dengan action delete
                 String title = binding.inputTitle.getText().toString().trim();
                 String description = binding.inputDescription.getText().toString().trim();
-
                 note.setId(id);
                 note.setTitle(title);
                 note.setDescription(description);
                 note.setDone(isDone);
-                detailViewModel.delete(note);
-                Toast.makeText(this, "Data Dihapus", Toast.LENGTH_SHORT).show();
-                finish();
+                showAlertDialog(getString(R.string.cancel), getString(R.string.message_delete), true);
                 break;
         }
     }
 
-    private void showCloseAlertDialog() {
-        String dialogTitle, dialogMessage;
-
-        dialogTitle = getString(R.string.cancel);
-        dialogMessage = getString(R.string.message_cancel);
+    private void showAlertDialog(String dialogTitle, String dialogMessage, boolean isDelete) {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(dialogTitle);
@@ -159,7 +150,13 @@ public class DetailActivity extends AppCompatActivity {
                 .setMessage(dialogMessage)
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.yes), (dialog, id) -> {
-                    finish();
+                    if (!isDelete) {
+                        finish();
+                    } else {
+                        detailViewModel.delete(note);
+                        Toast.makeText(this, "Data Dihapus", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 })
                 .setNegativeButton(getString(R.string.no), (dialog, id) -> dialog.cancel());
         AlertDialog alertDialog = alertDialogBuilder.create();

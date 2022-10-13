@@ -23,6 +23,6 @@ public class DetailViewModel extends ViewModel {
         mNoteRepository.update(note);
     }
 
-    public void delete(Note note) { mNoteRepository.delete(note);}
+    public void delete(Note note) {mNoteRepository.delete(note);}
 
 }

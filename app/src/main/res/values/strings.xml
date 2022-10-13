@@ -8,6 +8,7 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="message_cancel">Apa anda yakin ingin membatalkan perubahan?</string>
+    <string name="message_delete">Apa anda yakin ingin menghapus?</string>
     <string name="yes">Ya</string>
     <string name="no">Batal</string>
     <string name="cancel">Batal</string>
