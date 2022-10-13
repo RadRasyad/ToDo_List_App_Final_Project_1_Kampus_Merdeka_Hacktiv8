@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import com.hacktiv8.todolist.R;
 import com.hacktiv8.todolist.data.model.Note;
+import com.hacktiv8.todolist.data.room.NoteDatabase;
 import com.hacktiv8.todolist.databinding.ActivityDetailBinding;
 import com.hacktiv8.todolist.utils.ViewModelFactory;
 
@@ -25,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     private Note note;
     private boolean isDone;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         id = getIntent().getIntExtra(EXTRA_DATA, 0);
+        note = new Note();
 
         detailViewModel = obtainViewModel(DetailActivity.this);
         if (id!=0) {
@@ -68,7 +73,6 @@ public class DetailActivity extends AppCompatActivity {
 
                 boolean isValid = validation(title, description);
                 if (isValid) {
-                    note = new Note();
                     note.setId(id);
                     note.setTitle(title);
                     note.setDescription(description);
@@ -129,7 +133,16 @@ public class DetailActivity extends AppCompatActivity {
                 break;
             case R.id.actionDelete:
                 //isi dengan action delete
+                String title = binding.inputTitle.getText().toString().trim();
+                String description = binding.inputDescription.getText().toString().trim();
+
+                note.setId(id);
+                note.setTitle(title);
+                note.setDescription(description);
+                note.setDone(isDone);
+                detailViewModel.delete(note);
                 Toast.makeText(this, "Data Dihapus", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
         }
     }
@@ -152,5 +165,6 @@ public class DetailActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
 
 }

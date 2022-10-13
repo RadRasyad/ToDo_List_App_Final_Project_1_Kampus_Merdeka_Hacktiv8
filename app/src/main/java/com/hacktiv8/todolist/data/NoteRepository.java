@@ -32,7 +32,10 @@ public class NoteRepository {
         executorService.execute(() -> mNotesDao.insert(note));
     }
 
+    public void delete(final Note note) { executorService.execute(() -> mNotesDao.delete(note));}
+
     public void update(final Note note) {
         executorService.execute(() -> mNotesDao.update(note));
     }
+
 }

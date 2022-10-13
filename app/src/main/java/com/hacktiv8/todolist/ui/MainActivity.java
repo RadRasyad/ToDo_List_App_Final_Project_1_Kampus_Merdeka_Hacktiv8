@@ -17,7 +17,6 @@ import com.hacktiv8.todolist.utils.ViewModelFactory;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NoteAdapter.EditItemListener {
-
     private ActivityMainBinding binding;
 
     private MainViewModel mainViewModel;

@@ -27,4 +27,6 @@ public interface NoteDao {
     @Query("SELECT * from note WHERE id = :id")
     LiveData<Note> getNoteById(int id);
 
+    @Delete
+    void delete(Note note);
 }
